@@ -1,0 +1,33 @@
+{
+  "name": "week_8-project-code-snippet-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongo",
+    "express",
+    "crypto"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.1",
+    "mongoose": "^4.10.8",
+    "mustache-express": "^1.2.5",
+    "parseurl": "^1.3.1",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "supertest": "^3.0.0"
+  }
+}
