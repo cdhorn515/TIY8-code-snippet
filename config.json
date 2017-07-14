@@ -1,0 +1,9 @@
+
+{
+  "development": {
+    "mongoURL": "mongodb://localhost:27017/cdc_"
+  },
+  "test": {
+      "mongoURL": "mongodb://localhost:27017/cdc_code_snippet_db_test"
+  }
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha"
   },
   "keywords": [
     "mongo",
@@ -13,6 +13,9 @@
   ],
   "author": "",
   "license": "ISC",
+  "jshintConfig": {
+    "esversion": 6
+  },
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
