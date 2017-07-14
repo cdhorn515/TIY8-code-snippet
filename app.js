@@ -7,6 +7,7 @@ var session = require('express-session');
 var middleware = require('./middleware');
 var path = require('path');
 var mongoose = require('mongoose');
+var routes = require('./routes');
 
 var app = express();
 
@@ -40,6 +41,6 @@ app.use(middleware.validateUser());
 
 // router(app);
 
-app.listen(3000, function(req, res){
+app.listen(3000, (req, res) => {
   console.log('I\'m listening');
 });
