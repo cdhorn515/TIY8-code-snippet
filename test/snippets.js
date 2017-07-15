@@ -27,10 +27,13 @@ afterEach((done) => {
   Snippets.deleteMany({}).then(done());
 });
 
-it('user can get a list of snippets in a specific language', (done) =>{
+it('user can get a list of snippets in a specific language', (done) => {
   request(app)
-  .get('/api/snippets/:lang')
-  .expect(200, {hello: 'christina'}, done);
+  .get('/api/snippets/:language')
+  .expect(200)
+  .expect((res) => {
+    expect(res.body[0].title).to.equal("push into arrays");
+  }).end(done);
 });
 
   it('user can get a list of all of their snippets', (done) => {
@@ -41,7 +44,6 @@ it('user can get a list of snippets in a specific language', (done) =>{
       expect(2).to.not.equal(3);
         expect(res.body[0].language).to.equal("javascript");
       }).end(done);
-
     });
 });
 

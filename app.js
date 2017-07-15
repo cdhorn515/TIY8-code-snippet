@@ -51,19 +51,22 @@ app.get('/api/sanity', (req, res) => {
 
 app.get('/api/snippets', (req, res) => {
   Snippets.find({}).then((snippets) => {
+    console.log(snippets);
     res.json(snippets);
   });
 });
 
-app.get('/api/snippets/:lang', (req, res) => {
-  Snippets.find({language: req.params.lang}).then(function(error, result){
-    if (error) {
-      console.log(error);
-      return;
-    }
-    console.log('language result', result);
+app.get('/api/snippets/:language', (req, res) => {
+  Snippets.find({language: "javascript"}).then(function(result){
+    console.log('RESULT',result);
+    // console.log(reqparams);
+    // if (error) {
+    //   console.log('no snippets found in that language');
+    //   return;
+    // }
+    // console.log('language result', result);
+    res.json(result);
   });
-  res.json({hello: 'christina'});
 });
 
 
@@ -79,7 +82,7 @@ app.get('/api/snippets/:lang', (req, res) => {
 //   res.json();
 // });
 
-app.listen(3000, (req, res) => {
-  console.log('I\'m listening');
-});
+// app.listen(3000, (req, res) => {
+//   console.log('I\'m listening');
+// });
 module.exports = app;
