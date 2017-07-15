@@ -22,16 +22,13 @@ var config = require('./config.json')[nodeEnv];
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(config.mongoURL);
-// mongoose.connect('mongodb://localhost:27017/cdc_code_snippet');
-
+// mongoose.connect('mongodb://localhost:27017/cdc_code_snippet_dev');
 
 app.engine('mustache', mustacheExpress());
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -40,56 +37,53 @@ app.use(session({
   saveUninitialized: true
 }));
 // middleware.passportInitiate();
-//
 // app.use(middleware.validateUser());
 
-// router(app);
-
+// routes(app);
 app.get('/api/sanity', (req, res) => {
   res.json({hello: "christina"});
 });
 
 app.get('/api/snippets', (req, res) => {
   Snippets.find({}).then((snippets) => {
-    // console.log(snippets);
+    // console.log("ALL",snippets);
     res.json(snippets);
   });
 });
 
-app.get('/api/snippets/:language', (req, res) => {
+app.get('/api/snippets/language/', (req, res) => {
   Snippets.find({language: "javascript"}).then((result) => {
-    console.log('RESULT',result);
+    // console.log("LANGUAGE ", req.query.language);
     res.json(result);
   });
 });
-//still need to fix, result is undefined
-app.get('/api/snippets/:tag', (req, res) => {
-  Snippets.find({tags: [{name: "database"}]}).then((result) => {
-    console.log("HERE", result);
+app.get('/api/snippets/tags/', (req, res) => {
+  // req.params.tags = 'database';
+  // console.log(req.query.name);
+  var search = req.query.name;
+  // console.log("SEARCH", req);
+  Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
+    // console.log("HERE", result[0].tags[0].name);
     res.json(result);
   });
 });
-//still need to fix, result is undefined
-app.get('/api/snippets/:id', (req, res) => {
-  var id = "";
-  Snippets.find({_id: id}).then((result) => {
-    console.log("RESULT2", result);
+
+app.get('/api/snippets/', (req, res) => {
+  var id = req.query.id;
+  Snippets.find({language: id}).then((result) => {
     res.json(result);
   });
 });
 
 app.post('/api/snippets', (req, res) => {
-  var newSnippet = new Snippets.create({title: req.body.title}).then((result)=> {
+  var newSnippet = new Snippets.create({title: req.body.title}).save().then((result)=> {
     var addedTags = {tag: req.body.tags[0].name};
     result.tags.push(addedTags);
-    result.save().then(() => {
       res.json(newSnippet);
     });
-  });
-  res.json();
 });
 
-// app.listen(3000, (req, res) => {
-//   console.log('I\'m listening');
-// });
+app.listen(3000, (req, res) => {
+  console.log('I\'m listening');
+});
 module.exports = app;

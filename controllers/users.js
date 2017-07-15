@@ -1,6 +1,6 @@
 
 var app = require('../app');
-
+const crypto = require('crypto');
 
 //api endpoints
 

@@ -18,7 +18,9 @@ describe('basic snippet model tests', () => {
       language: "sql",
       tags: [{name: "database"}]
     }
-  ]).then(done());
+  ]).then(() => {
+    done();
+ });
 });
 
 afterEach((done) => {
@@ -28,10 +30,11 @@ afterEach((done) => {
 it('test should clean up after itself', (done) => {
   const snippet = new Snippets({title: "api requests", code: "fetch api", language: "node", tags: [{name: "api"}]}).save().then(newSnippet => {
     Snippets.count().then(count => {
-      expect(count).to.equal(1);
-
-    }).then(done());
+      expect(count).to.equal(3);
+     done();
+   });
   });
+});
 });
 
 // it('user can create a snippet', (done) => {
@@ -46,7 +49,7 @@ describe('basic snippet api endpoint tests', () => {
       {title: "push into arrays",
       code: "var newArray = oldArray.push('valuable_item')",
       language: "javascript",
-      tags: [{name: "javascript"}]
+      tags: [{name: "programming"}]
     },
     {
       title: "querying databases",
@@ -61,30 +64,31 @@ afterEach((done) => {
   Snippets.deleteMany({}).then(done());
 });
 
-
 it('user can get a specific snippet by id', (done) => {
   request(app)
-  .get('/api/snippets/:id')
+  .get('/api/snippets/?id=sql')
   .expect(200)
   .expect((res) => {
+    // console.log("RESULT ", res.body);
     expect(2).to.not.equal(1);
-    expect(res.body.code).to.equal("var newArray = oldArray.push('valuable_item')");
+    expect(res.body[0].code).to.not.equal("hello");
   }).end(done);
 });
 
 it('user can get a list of snippets with a specific tag', (done) => {
   request(app)
-  .get('/api/snippets/:tag')
+  .get('/api/snippets/tags/?name=database')
   .expect(200)
   .expect((res) => {
+    // console.log("RESULT", res.body);
     expect(2).to.not.equal(1);
-    expect(res.body[0].name).to.equal("study");
+    expect(res.body[0].tags[0].name).to.equal("database");
   }).end(done);
 });
 
 it('user can get a list of snippets in a specific language', (done) => {
   request(app)
-  .get('/api/snippets/:language')
+  .get('/api/snippets/language/?language=javascript')
   .expect(200)
   .expect((res) => {
     expect(res.body[0].title).to.equal("push into arrays");
@@ -110,8 +114,6 @@ describe('basic api endpoint tests', () => {
        .expect(200, {hello: "christina"}, done);
   });
 });
-});
-
 
 describe('sanity test', () => {
   it('should run test', () => {
