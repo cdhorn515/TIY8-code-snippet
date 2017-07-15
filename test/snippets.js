@@ -30,7 +30,7 @@ afterEach((done) => {
 it('user can get a list of snippets in a specific language', (done) =>{
   request(app)
   .get('/api/snippets/:lang')
-  .expect(200, {hello: 'joel', done});
+  .expect(200, {hello: 'christina'}, done);
 });
 
   it('user can get a list of all of their snippets', (done) => {
