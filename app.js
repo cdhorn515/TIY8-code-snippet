@@ -8,6 +8,8 @@ var middleware = require('./middleware');
 var path = require('path');
 var mongoose = require('mongoose');
 var routes = require('./routes');
+var Snippets = require('./models/snippets');
+var Users = require('./models/users');
 
 var app = express();
 
@@ -15,11 +17,13 @@ var crypto = require('crypto');
 var passport = require("passport");
 var BasicStrategy = require("passport-http").BasicStrategy;
 
-mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost:27017/cdc_code_snippet_db');
+var nodeEnv = process.env.NODE_ENV || "development";
+var config = require('./config.json')[nodeEnv];
 
-var env = process.env.NODE_ENV || "development";
-var mongoURL = require('./config.json')[env].mongoURL;
+mongoose.Promise = require('bluebird');
+mongoose.connect(config.mongoURL);
+// mongoose.connect('mongodb://localhost:27017/cdc_code_snippet');
+
 
 app.engine('mustache', mustacheExpress());
 app.set('views', path.join(__dirname, 'views'));
@@ -35,12 +39,47 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-middleware.passportInitiate();
-
-app.use(middleware.validateUser());
+// middleware.passportInitiate();
+//
+// app.use(middleware.validateUser());
 
 // router(app);
+
+app.get('/api/sanity', (req, res) => {
+  res.json({hello: "christina"});
+});
+
+app.get('/api/snippets', (req, res) => {
+  Snippets.find({}).then((snippets) => {
+    res.json(snippets);
+  });
+});
+
+app.get('/api/snippets/:lang', (req, res) => {
+  Snippets.find({language: req.params.lang}).then(function(error, result){
+    if (error) {
+      console.log(error);
+      return;
+    }
+    console.log('language result', result);
+  });
+  res.json({hello: 'christina'});
+});
+
+
+// app.get('/api/snippets/:tag', (req, res) => {
+//   res.json({});
+// });
+//
+// app.get('/api/snippets/:id', (req, res) => {
+//   res.json(result);
+// });
+//
+// app.post('/api/snippets', (req, res) => {
+//   res.json();
+// });
 
 app.listen(3000, (req, res) => {
   console.log('I\'m listening');
 });
+module.exports = app;

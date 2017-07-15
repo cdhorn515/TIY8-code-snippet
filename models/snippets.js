@@ -15,10 +15,12 @@ var snippetsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tag: {
-    type: String,
-    required: true
-  }
+  tags: [{
+    name: {
+      type: String,
+      required: true
+    }
+  }]
 });
 
 var Snippets = mongoose.model('Snippets', snippetsSchema);
