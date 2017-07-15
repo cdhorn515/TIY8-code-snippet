@@ -51,36 +51,43 @@ app.get('/api/sanity', (req, res) => {
 
 app.get('/api/snippets', (req, res) => {
   Snippets.find({}).then((snippets) => {
-    console.log(snippets);
+    // console.log(snippets);
     res.json(snippets);
   });
 });
 
 app.get('/api/snippets/:language', (req, res) => {
-  Snippets.find({language: "javascript"}).then(function(result){
+  Snippets.find({language: "javascript"}).then((result) => {
     console.log('RESULT',result);
-    // console.log(reqparams);
-    // if (error) {
-    //   console.log('no snippets found in that language');
-    //   return;
-    // }
-    // console.log('language result', result);
+    res.json(result);
+  });
+});
+//still need to fix, result is undefined
+app.get('/api/snippets/:tag', (req, res) => {
+  Snippets.find({tags: [{name: "database"}]}).then((result) => {
+    console.log("HERE", result);
+    res.json(result);
+  });
+});
+//still need to fix, result is undefined
+app.get('/api/snippets/:id', (req, res) => {
+  var id = "";
+  Snippets.find({_id: id}).then((result) => {
+    console.log("RESULT2", result);
     res.json(result);
   });
 });
 
-
-// app.get('/api/snippets/:tag', (req, res) => {
-//   res.json({});
-// });
-//
-// app.get('/api/snippets/:id', (req, res) => {
-//   res.json(result);
-// });
-//
-// app.post('/api/snippets', (req, res) => {
-//   res.json();
-// });
+app.post('/api/snippets', (req, res) => {
+  var newSnippet = new Snippets.create({title: req.body.title}).then((result)=> {
+    var addedTags = {tag: req.body.tags[0].name};
+    result.tags.push(addedTags);
+    result.save().then(() => {
+      res.json(newSnippet);
+    });
+  });
+  res.json();
+});
 
 // app.listen(3000, (req, res) => {
 //   console.log('I\'m listening');
