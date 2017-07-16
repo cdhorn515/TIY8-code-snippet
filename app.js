@@ -89,46 +89,21 @@ app.post('/api/snippets', (req, res) => {
     });
 });
 
-/*
 app.get('/api/snippets', (req, res) => {
   Snippets.find({}).then((snippets) => {
-    // console.log("ALL",snippets);
+    console.log("ALL",snippets);
     res.json(snippets);
   });
 });
 
-app.get('/api/snippets/language/', (req, res) => {
-  Snippets.find({language: "javascript"}).then((result) => {
-    // console.log("LANGUAGE ", req.query.language);
-    res.json(result);
-  });
-});
-app.get('/api/snippets/tags/', (req, res) => {
-  // req.params.tags = 'database';
-  // console.log(req.query.name);
-  var search = req.query.name;
-  // console.log("SEARCH", req);
-  Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
-    // console.log("HERE", result[0].tags[0].name);
+app.get('/api/snippets/language/:language', (req, res) => {
+  // var language = req.params;
+  Snippets.find({language: req.params}).then((result) => {
+    console.log("LANGUAGE ", req.params.language);
     res.json(result);
   });
 });
 
-app.get('/api/snippets/', (req, res) => {
-  var id = req.query.id;
-  Snippets.find({language: id}).then((result) => {
-    res.json(result);
-  });
-});
-
-app.post('/api/snippets', (req, res) => {
-  var newSnippet = new Snippets.create({title: req.body.title}).save().then((result)=> {
-    var addedTags = {tag: req.body.tags[0].name};
-    result.tags.push(addedTags);
-      res.json(newSnippet);
-    });
-});
-*/
 // app.listen(3000, (req, res) => {
 //   console.log('I\'m listening');
 // });
