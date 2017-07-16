@@ -83,8 +83,8 @@ app.post('/api/snippets', (req, res) => {
     });
 });
 
-
-app.listen(3000, (req, res) => {
-  console.log('I\'m listening');
-});
+// 
+// app.listen(3000, (req, res) => {
+//   console.log('I\'m listening');
+// });
 module.exports = app;

@@ -3,7 +3,8 @@ var request = require('supertest');
 var app = require('../app');
 var Snippets = require('../models/snippets');
 
-
+/*
+commenting out for running user tests
 describe('basic snippet model tests', () => {
 
   beforeEach((done) => {
@@ -141,6 +142,7 @@ it('user can get a list of all of their snippets', (done) => {
     }).end(done);
   });
 });
+*/
 // basic access api test
 describe('basic api endpoint tests', () => {
   it('can access api endpoint and get success back', (done) => {
