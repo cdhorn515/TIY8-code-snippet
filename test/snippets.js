@@ -35,12 +35,19 @@ it('test should clean up after itself', (done) => {
    });
   });
 });
-});
 
-// it('user can create a snippet', (done) => {
-//   request(app)
-//   .post('/api/snippets', )
-// });
+
+it('user can create a snippet in the db and find it with mnogoose syntax', (done) => {
+  request(app)
+  .post('/api/snippets');
+  var snippet = new Snippets({title: "test", code: "test code", language:"cobol", tags: [{name: "testingTag"}]})
+  .save().then((newSnippet) => {
+    expect(newSnippet.title).to.equal("test");
+    expect(newSnippet.tags[0].name).to.equal("testingTag");
+  });
+  done();
+});
+});
 
 describe('basic snippet api endpoint tests', () => {
 
@@ -66,7 +73,7 @@ afterEach((done) => {
 
 it('user can get a specific snippet by id', (done) => {
   request(app)
-  .get('/api/snippets/?id=sql')
+  .get('/api/snippets/sql')
   .expect(200)
   .expect((res) => {
     // console.log("RESULT ", res.body);
@@ -77,7 +84,7 @@ it('user can get a specific snippet by id', (done) => {
 
 it('user can get a list of snippets with a specific tag', (done) => {
   request(app)
-  .get('/api/snippets/tags/?name=database')
+  .get('/api/snippets/tags/database')
   .expect(200)
   .expect((res) => {
     // console.log("RESULT", res.body);
@@ -88,7 +95,7 @@ it('user can get a list of snippets with a specific tag', (done) => {
 
 it('user can get a list of snippets in a specific language', (done) => {
   request(app)
-  .get('/api/snippets/language/?language=javascript')
+  .get('/api/snippets/language/javascript')
   .expect(200)
   .expect((res) => {
     expect(res.body[0].title).to.equal("push into arrays");

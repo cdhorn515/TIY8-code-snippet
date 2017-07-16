@@ -43,42 +43,45 @@ app.use(session({
 app.get('/api/sanity', (req, res) => {
   res.json({hello: "christina"});
 });
-
+//working in postman and test
 app.get('/api/snippets', (req, res) => {
   Snippets.find({}).then((snippets) => {
     // console.log("ALL",snippets);
     res.json(snippets);
   });
 });
-
-app.get('/api/snippets/language/', (req, res) => {
-  Snippets.find({language: "javascript"}).then((result) => {
+//working in postman and test
+app.get('/api/snippets/language/:language', (req, res) => {
+  Snippets.find({language: req.params.language}).then((result) => {
     // console.log("LANGUAGE ", req.query.language);
     res.json(result);
   });
 });
-app.get('/api/snippets/tags/', (req, res) => {
+//working in postman and test
+app.get('/api/snippets/tags/:tag', (req, res) => {
   // req.params.tags = 'database';
   // console.log(req.query.name);
-  var search = req.query.name;
+  var search = req.params.tag;
   // console.log("SEARCH", req);
   Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
     // console.log("HERE", result[0].tags[0].name);
     res.json(result);
   });
 });
+//working in postman and test
+app.get('/api/snippets/:id', (req, res) => {
+  var id = req.params.id;
+  Snippets.find({_id: id}).then((result) => {
 
-app.get('/api/snippets/', (req, res) => {
-  var id = req.query.id;
-  Snippets.find({language: id}).then((result) => {
     res.json(result);
   });
 });
 
 app.post('/api/snippets', (req, res) => {
-  var newSnippet = new Snippets.create({title: req.body.title}).save().then((result)=> {
-    var addedTags = {tag: req.body.tags[0].name};
-    result.tags.push(addedTags);
+  var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, tags: [{name: req.body.tags}]}).save().then((result)=> {
+    // var addedTags = {tags: req.body.tags};
+    // result.tags.push(addedTags);
+    // console.log("HERE",newSnippet);
       res.json(newSnippet);
     });
 });
