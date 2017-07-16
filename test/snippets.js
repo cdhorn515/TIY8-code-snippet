@@ -93,12 +93,9 @@ it('snippets api endpoint alllows creation of snippet', (done) => {
     Snippets.count().then((count) => {
       expect(count).to.equal(4);
     });
-
   }).end(done);
-
-
 });
-/*
+
 it('user can get a specific snippet by id', (done) => {
   request(app)
   .get('/api/snippets/:id')
@@ -132,7 +129,7 @@ it('user can get a list of snippets in a specific language', (done) => {
     expect(res.body[0].title).to.equal("push into arrays");
   }).end(done);
 });
-*/
+
 
 it('user can get a list of all of their snippets', (done) => {
   request(app)

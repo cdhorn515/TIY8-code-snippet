@@ -40,6 +40,7 @@ app.use(session({
 // app.use(middleware.validateUser());
 
 // routes(app);
+
 app.get('/api/sanity', (req, res) => {
   res.json({hello: "christina"});
 });
@@ -81,6 +82,7 @@ app.post('/api/snippets', (req, res) => {
   res.json(newSnippet);
     });
 });
+
 
 app.listen(3000, (req, res) => {
   console.log('I\'m listening');
