@@ -50,17 +50,15 @@ app.get('/api/snippets', (req, res) => {
     res.json(snippets);
   });
 });
-//working in postman and test
+//working in postman and test if change test to query and remove :language from get
 app.get('/api/snippets/language/:language', (req, res) => {
   Snippets.find({language: req.params.language}).then((result) => {
     // console.log("LANGUAGE ", req.query.language);
     res.json(result);
   });
 });
-//working in postman and test
+//working in postman and test if change test to query  remove :tag from get and change req.params to req.query
 app.get('/api/snippets/tags/:tag', (req, res) => {
-  // req.params.tags = 'database';
-  // console.log(req.query.name);
   var search = req.params.tag;
   // console.log("SEARCH", req);
   Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
@@ -68,9 +66,9 @@ app.get('/api/snippets/tags/:tag', (req, res) => {
     res.json(result);
   });
 });
-//working in postman and test
+//working in postman and test if change test to query  remove :id from get and change req.params to req.query
 app.get('/api/snippets/:id', (req, res) => {
-  var id = req.params.id;
+  var id = req.query.id;
   Snippets.find({_id: id}).then((result) => {
 
     res.json(result);
@@ -78,11 +76,9 @@ app.get('/api/snippets/:id', (req, res) => {
 });
 //works in postman
 app.post('/api/snippets', (req, res) => {
-  var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, tags: [{name: req.body.tags}]}).save().then((result)=> {
-    // var addedTags = {tags: req.body.tags};
-    // result.tags.push(addedTags);
-    // console.log("HERE",newSnippet);
-      res.json(newSnippet);
+  var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
+    console.log("!!!! ", newSnippet.tags);
+  res.json(newSnippet);
     });
 });
 

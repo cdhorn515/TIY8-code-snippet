@@ -16,8 +16,10 @@ var snippetsSchema = new mongoose.Schema({
     required: true
   },
   tags: [{
+    name: {
       type: String,
       required: true
+    }
   }]
 });
 
