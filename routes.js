@@ -1,6 +1,5 @@
-var Snippets = require('./controllers/snippets')
+var Snippets = require('./controllers/snippets');
 
 module.exports = function(app) {
-//api endpoints
 
 };
