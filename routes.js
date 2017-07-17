@@ -11,7 +11,7 @@ module.exports = function(app) {
   //working in postman and test
   app.get('/api/snippets/:id', snippetController.getSnippetById);
   //works in postman
-  app.post('/api/snippets', snippetController.createSnippet);
+  app.post('/api/snippets/', snippetController.createSnippet);
 
   app.get('/sanity', snippetController.endpointSanityCheck);
 
@@ -21,8 +21,9 @@ module.exports = function(app) {
   app.get('/snippets/tags/:tag', snippetController.displaySnippetsByTag);
 
   app.get('/snippets/:id', snippetController.displaySnippetById);
-    /*
-  app.get('/snippets/create', snippetController.createSnippet);
+
+  app.get('/snippets/', snippetController.createSnippetLandingPage);
+
   app.post('/snippets', snippetController.createSnippet);
-*/
+
 };

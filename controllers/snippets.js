@@ -38,7 +38,7 @@ module.exports = {
 
   createSnippet: (req, res) => {
     var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
-      console.log("!!!! ", newSnippet.tags);
+      // console.log("!!!! ", newSnippet.tags);
     res.json(newSnippet);
       });
   },
@@ -72,20 +72,38 @@ console.log("HERE", snippets);
 
   displaySnippetsByTag: (req, res) => {
     var search = req.params.tag;
+    var context = {
+      loggedIn: true,
+      username: req.session.username,
+    };
     // console.log("SEARCH", req);
     Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
-      console.log("HERE", result[0].tags[0].name);
-      res.render('home');
+      console.log("TAGS", result[0].tags[0].name);
+      console.log(result);
+      // console.log("HERE", result);
+      res.render('home', context);
     });
   },
 
   displaySnippetById: (req, res) => {
       var id = req.params.id;
+      var context = {
+        loggedIn: true,
+        username: req.session.username,
+      };
       Snippets.find({title: id}).then((result) => {
+        console.log("ID ", result);
         res.render('home');
       });
   },
 
+  createSnippetLandingPage: (req, res) => {
+    var context = {
+      loggedIn: true,
+      username: req.session.username,
+    };
+    res.render('createSnippet', context);
+  },
   // createSnippet: (req, res) => {
   //   var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
   //   res.json(newSnippet);

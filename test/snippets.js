@@ -101,7 +101,7 @@ afterEach(function(done) {
 
 it('snippets api endpoint alllows creation of snippet', function(done) {
   request(app)
-  .post('/api/snippets')
+  .post('/api/snippets/')
   .send({username: "Sera", title: "test posting new snippet", code: "writing new code", language: "fortran", $set: {tags: [{name: "snippet"}]}})
   .expect(200)
   .expect(function(res) {
