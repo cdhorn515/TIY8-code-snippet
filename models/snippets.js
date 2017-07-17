@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var snippetsSchema = new mongoose.Schema({
+  username: String,
   title: {
     type: String,
     required: true,

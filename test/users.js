@@ -8,19 +8,16 @@ var createPasswordHashObj = require('../controllers/users').createPasswordHashOb
 var hashString = require('../controllers/users').hashString;
 var login = require('../controllers/users').login;
 
-describe('user model tests', () => {
+describe('user model tests', function() {
   afterEach(function(done){
-  Users.deleteMany({}).then(function(){
-    done();
-  });
+  Users.deleteMany({}).then(done());
 });
 
 it('will not login if invalid user', function(done){
   createUser('sami', 'treats').then(function(user){
   login('sera', 'treats').then(function(result) {
     expect(result).to.equal(false);
-    done();
-  });
+  }).then(done());
 });
 });
 
@@ -28,8 +25,7 @@ it('will not login if invalid user', function(done){
     createUser('sami', 'treats').then(function(user){
       login('sami', 'peanutbutter').then(function(result) {
         expect(result).to.equal(false);
-        done();
-      });
+      }).then(done());
     });
   });
 
@@ -37,9 +33,8 @@ it('will not login if invalid user', function(done){
     createUser('sami', 'treats').then(function(user){
       login('sami', 'treats').then(function(result) {
         expect(result).to.equal(true);
-        done();
       });
-    });
+    }).then(done());
   });
 
   it('can generate a password hash from a string', function(done) {
@@ -51,8 +46,8 @@ it('will not login if invalid user', function(done){
   });
 
 
-  it('can create a user in mongo', (done) => {
-    createUser('username', 'password').then((user) => {
+  it('can create a user in mongo', function(done) {
+    createUser('username', 'password').then(function(user) {
       expect(user.username).to.equal('username');
       expect(user.password).to.be.an('object');
       expect(user.password.hash.length).to.equal(684);
