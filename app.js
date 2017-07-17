@@ -39,8 +39,9 @@ app.use(session({
 // middleware.passportInitiate();
 // app.use(middleware.validateUser());
 
-// routes(app);
+routes(app);
 
+/*
 app.get('/api/sanity', function(req, res) {
   res.json({hello: "christina"});
 });
@@ -81,9 +82,11 @@ app.post('/api/snippets', function(req, res) {
   res.json(newSnippet);
     });
 });
+*/
+if (require.main === "module") {
 
-//
-// app.listen(3000, function(req, res) {
-//   console.log('I\'m listening');
-// });
+app.listen(3000, function(req, res) {
+  console.log('I\'m listening');
+});
+}
 module.exports = app;

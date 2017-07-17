@@ -3,9 +3,13 @@ var request = require('supertest');
 var app = require('../app');
 var Snippets = require('../models/snippets');
 
-/*
-commenting out for running user tests
+
+//commenting out for running user tests
 describe('basic snippet model tests', function() {
+
+  beforeEach(function(done) {
+    Snippets.deleteMany({}).then(done());
+  });
 
   beforeEach(function(done) {
     Snippets.insertMany([
@@ -58,6 +62,9 @@ it('user can create a new snippet in the db and find with mongoose syntax', func
 
 //api endpoint tests
 describe('basic snippet api endpoint tests', function() {
+  beforeEach(function(done) {
+    Snippets.deleteMany({}).then(done());
+  });
 
   beforeEach(function(done) {
     Snippets.insertMany([
@@ -105,20 +112,18 @@ it('snippets api endpoint alllows creation of snippet', function(done) {
 
 it('user can get a specific snippet by id', function(done) {
   request(app)
-  .get('/api/snippets/:id')
-  // .get('/api/snippets/?id=596a8a4a77855117d41f9a9d')
+  .get('/api/snippets/querying%20databases')
   .expect(200)
   .expect(function(res) {
     // console.log("RESULT ", res.body);
     expect(2).to.not.equal(1);
-    expect(res.body[0].code).to.not.equal("hello");
+    expect(res.body[0].code).to.equal("select * from");
   }).end(done);
 });
 
 it('user can get a list of snippets with a specific tag', function(done) {
   request(app)
-  .get('/api/snippets/tags/:tag')
-  // .get('/api/snippets/tags/?tag=database')
+  .get('/api/snippets/tags/database')
   .expect(200)
   .expect(function(res) {
     // console.log("RESULT", res.body);
@@ -129,8 +134,7 @@ it('user can get a list of snippets with a specific tag', function(done) {
 
 it('user can get a list of snippets in a specific language', function(done) {
   request(app)
-  .get('/api/snippets/language/:language')
-  // .get('/api/snippets/language/?language=javascript')
+  .get('/api/snippets/language/javascript')
   .expect(200)
   .expect(function(res) {
     expect(res.body[0].title).to.equal("push into arrays");
@@ -147,7 +151,7 @@ it('user can get a list of all of their snippets', function(done) {
     }).end(done);
   });
 });
-*/
+
 // basic access api test
 describe('basic api endpoint tests', function() {
   it('can access api endpoint and get success back', function(done) {

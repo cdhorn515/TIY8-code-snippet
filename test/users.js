@@ -5,7 +5,7 @@ var request = require('supertest');
 var app = require('../app');
 var Users = require('../models/users');
 var createPasswordHashObj = require('../controllers/users').createPasswordHashObj;
-var hashString = require('../controllers/users').hashString;
+// var hashString = require('../controllers/users').hashString;
 var login = require('../controllers/users').login;
 
 describe('user model tests', function() {
@@ -44,7 +44,6 @@ it('will not login if invalid user', function(done){
     expect(passwordObj).to.deep.equal(expectedHashObj);
     done();
   });
-
 
   it('can create a user in mongo', function(done) {
     createUser('username', 'password').then(function(user) {

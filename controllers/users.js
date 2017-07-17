@@ -30,6 +30,5 @@ var login = function(username, password) {
 module.exports = {
   createUser: createUser,
   createPasswordHashObj: createPasswordHashObj,
-
   login: login
 };
