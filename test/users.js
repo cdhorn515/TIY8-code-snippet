@@ -33,8 +33,8 @@ it('will not login if invalid user', function(done){
     createUser('sami', 'treats').then(function(user){
       login('sami', 'treats').then(function(result) {
         expect(result).to.equal(true);
-      });
-    }).then(done());
+      }).then(done());
+    });
   });
 
   it('can generate a password hash from a string', function(done) {
