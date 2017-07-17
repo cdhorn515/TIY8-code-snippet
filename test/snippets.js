@@ -4,7 +4,8 @@ var app = require('../app');
 var Snippets = require('../models/snippets');
 
 
-//commenting out for running user tests
+
+//------------------------
 describe('basic snippet model tests', function() {
 
   beforeEach(function(done) {
@@ -151,6 +152,8 @@ it('user can get a list of all of their snippets', function(done) {
     }).end(done);
   });
 });
+
+//----------------------------------
 
 // basic access api test
 describe('basic api endpoint tests', function() {

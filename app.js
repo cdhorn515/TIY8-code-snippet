@@ -25,6 +25,7 @@ mongoose.connect(config.mongoURL);
 // mongoose.connect('mongodb://localhost:27017/cdc_code_snippet_dev');
 
 app.engine('mustache', mustacheExpress());
+app.set('view engine', 'mustache');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());

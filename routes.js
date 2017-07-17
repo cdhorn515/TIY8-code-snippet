@@ -13,14 +13,16 @@ module.exports = function(app) {
   //works in postman
   app.post('/api/snippets', snippetController.createSnippet);
 
-  app.get('/snippets', snippetController.getSnippets);
-  //working in postman and test
-  app.get('/snippets/language/:language', snippetController.getSnippetsByLanguage);
-  //working in postman and test
-  app.get('/snippets/tags/:tag', snippetController.getSnippetsByTag);
-  //working in postman and test
-  app.get('/snippets/:id', snippetController.getSnippetById);
-  //works in postman
-  app.post('/snippets', snippetController.createSnippet);
+  app.get('/sanity', snippetController.endpointSanityCheck);
 
+  app.get('/snippets', snippetController.displayAllSnippets);
+  app.get('/snippets/language/:language', snippetController.displaySnippetsByLanguage);
+
+  app.get('/snippets/tags/:tag', snippetController.displaySnippetsByTag);
+
+  app.get('/snippets/:id', snippetController.displaySnippetById);
+    /*
+  app.get('/snippets/create', snippetController.createSnippet);
+  app.post('/snippets', snippetController.createSnippet);
+*/
 };
