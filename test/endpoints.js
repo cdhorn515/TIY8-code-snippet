@@ -42,13 +42,17 @@ afterEach(function(done) {
   Snippets.deleteMany({}).then(done());
 });
 
-it('user can go to create snippet page', function(done) {
+it('user can post created snippet', function(done) {
   request(app)
-  .get('/snippets')
-  .expect(500);
-  done();
+  .post('/snippets/create')
+  .expect(500, done);
 });
 
+it('user can go to create snippet page', function(done) {
+  request(app)
+  .get('/snippets/create')
+  .expect(200, done);
+});
 
 it('user can get a specific snippet by id', function(done) {
   request(app)
@@ -83,7 +87,6 @@ it('can access snippet home page and see all snippets', function(done) {
   request(app)
     .get('/snippets')
     .expect(200)
-
     .expect(function(res){
       expect(2).to.not.equal(3);
     }).then(done());

@@ -104,10 +104,14 @@ console.log("HERE", snippets);
     };
     res.render('createSnippet', context);
   },
-  // createSnippet: (req, res) => {
-  //   var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
-  //   res.json(newSnippet);
-  //     });
-  // }
+  createSnippetEndpoint: (req, res) => {
+    var context = {
+      loggedIn: true,
+      username: req.session.username,
+    };
+    var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language}).save().then((newSnippet)=> {
+    res.render('home', context);
+      });
+  }
 
 };
