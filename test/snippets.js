@@ -53,6 +53,8 @@ it('test should clean up after itself', function(done) {
 });
 
 it('user can create a new snippet in the db and find with mongoose syntax', function(done) {
+
+
   var snippet = new Snippets({username: "Christina", title: "log your way to success", code: "console.log(all_the_things)", language: "java", tags: [{name: "database"}]}).save().then(function(newSnippet) {
     expect(newSnippet.title).to.equal("log your way to success");
     expect(newSnippet.tags[0].name).to.equal("database");
@@ -100,15 +102,22 @@ afterEach(function(done) {
 });
 
 it('snippets api endpoint alllows creation of snippet', function(done) {
+  var newSnippet = {
+    username: "Christina",
+    title: "test 2",
+    code: "CODING",
+    language: "CODE",
+    tags: [{name: "database misc"}]
+  };
   request(app)
-  .post('/api/snippets/create')
-  .send({username: "Sera", title: "test posting new snippet", code: "writing new code", language: "fortran", $set: {tags: [{name: "snippet"}]}})
-  .expect(200)
-  .expect(function(res) {
+  .post('/api/snippets/create');
+
+  expect(200);
+  expect(function(res) {
     Snippets.count().then((count) => {
       expect(count).to.equal(4);
     });
-  }).end(done);
+  }).then(done());
 });
 
 it('user can get a specific snippet by id', function(done) {

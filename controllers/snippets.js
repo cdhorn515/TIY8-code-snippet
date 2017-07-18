@@ -37,10 +37,23 @@ module.exports = {
   },
 
   createSnippet: (req, res) => {
-    var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
+    // var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
       // console.log("!!!! ", newSnippet.tags);
-    res.json(newSnippet);
+
+      var tags = req.body.tags[0].name;
+      console.log("TAGS HERE",tags);
+      var tagsArray = req.body.tags[0].name.split(" ");
+      console.log("TAGS ARRAY",tagsArray);
+      var newSnippet = new Snippets({username: req.body.username, title: req.body.title, code: req.body.code, language: req.body.language});
+
+      tagsArray.forEach(function(tag) {
+        newSnippet.tags.push({name: tag});
       });
+
+      newSnippet.save();
+
+    res.json(newSnippet);
+      // });
   },
   endpointSanityCheck: (req, res) => {
     res.send({hello: "christina"});
@@ -54,7 +67,7 @@ module.exports = {
       };
       Snippets.find({}).then((snippets) => {
         context.model = snippets;
-console.log("HERE", snippets);
+// console.log("HERE", snippets);
       res.render('home', context);
     });
   },
@@ -65,7 +78,7 @@ console.log("HERE", snippets);
       username: req.session.username,
     };
     Snippets.find({language: req.params.language}).then((result) => {
-      console.log("LANGUAGE ", req.params.language);
+      // console.log("LANGUAGE ", req.params.language);
       res.render('home', context);
     });
   },
@@ -78,8 +91,8 @@ console.log("HERE", snippets);
     };
     // console.log("SEARCH", req);
     Snippets.find({ tags: { $elemMatch: { name: search} } }).then((result) => {
-      console.log("TAGS", result[0].tags[0].name);
-      console.log(result);
+      // console.log("TAGS", result[0].tags[0].name);
+      // console.log(result);
       // console.log("HERE", result);
       res.render('home', context);
     });
@@ -92,7 +105,7 @@ console.log("HERE", snippets);
         username: req.session.username,
       };
       Snippets.find({title: id}).then((result) => {
-        console.log("ID ", result);
+        // console.log("ID ", result);
         res.render('home');
       });
   },
@@ -109,9 +122,21 @@ console.log("HERE", snippets);
       loggedIn: true,
       username: req.session.username,
     };
-    var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language}).save().then((newSnippet)=> {
-    res.render('home', context);
-      });
+    var tags = req.body.tags[0].name;
+    console.log("TAGS HERE",tags);
+    var tagsArray = req.body.tags[0].name.split(" ");
+    console.log("TAGS ARRAY",tagsArray);
+    var newSnippet = new Snippets({username: req.body.username, title: req.body.title, code: req.body.code, language: req.body.language});
+
+    tagsArray.forEach(function(tag) {
+      newSnippet.tags.push({name: tag});
+    });
+
+    newSnippet.save();
+
+    res.render('home');
+      // }
+    // );
   }
 
 };

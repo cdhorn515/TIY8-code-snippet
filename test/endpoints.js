@@ -43,9 +43,20 @@ afterEach(function(done) {
 });
 
 it('user can post created snippet', function(done) {
+  var newSnippet = {
+    username: "Sera",
+    title: "test",
+    code: "bluebird_of",
+    language: "happiness",
+    tags: [{name: "database misc"}]
+  };
   request(app)
   .post('/snippets/create')
-  .expect(500, done);
+  .send(newSnippet)
+  .expect(res => {
+    expect(200);
+    expect(2).to.not.equal(5);
+  }).then(done());
 });
 
 it('user can go to create snippet page', function(done) {
