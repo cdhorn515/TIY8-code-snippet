@@ -86,7 +86,7 @@ app.post('/api/snippets', function(req, res) {
 */
 // if (require.main === "module") {
 
-app.listen(3000, function(req, res) {
+app.listen(process.env.PORT || 3000, function(req, res) {
   console.log('I\'m listening');
 });
 // }

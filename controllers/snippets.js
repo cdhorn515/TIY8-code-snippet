@@ -113,7 +113,7 @@ module.exports = {
       signedIn: true,
       username: "Christina",
     };
-    res.render('createsnippet', context);
+    res.render('createSnippet', context);
   },
   createSnippetEndpoint: (req, res) => {
     var context = {

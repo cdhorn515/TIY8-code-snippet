@@ -1,7 +1,7 @@
 var passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 
-
+//use passport on api, use gabble authentication 
 module.exports = {
 //   passportInitiate: () => {
 //     passport.use(new BasicStrategy(function(username, password, done){
