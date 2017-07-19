@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+<body>
+  <header>
+
+    <form class="float" action="/home" method="get">
+      <input type="submit" name="" value="Snippet">
+    </form>
+
+    <form class="float" action="/createSnippet" method="get">
+      <input type="submit" name="" value="Create a Snippet">
+    </form>
+
+    {{#name}}
+      <form class="float" action="/signup" method="get">
+        <input type="submit" name="" value="Logged in as {{name}}">
+      </form>
+    {{/name}}
+
+    {{#signedIn}}
+      <form class="float" action="/login" method="get">
+        <input type="submit" name="" value="Log out">
+      </form>
+    {{/signedIn}}
+
+    {{^signedIn}}
+    <form class="float" action="/login" method="get">
+      <input type="submit" name="" value="Log in">
+    </form>
+    {{/signedIn}}
+    <div class="clearFloat"></div>
+
+  </header>
+
+  {{msg}}
+
+  <form class="" action="/signup" method="post">
+    <div>
+      <label for="name">Username</label>
+      <input type="text" name="name" value="" id="name" placeholder="Username">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" value="" id="password" placeholder="password">
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" name="confirmPassword" value="" id="confirmPw" placeholder="retype your password">
+    </div>
+    <div>
+      <input type="submit" name="" value="Submit">
+    </div>
+  </form>
+
+
+</body>
+
+</html>

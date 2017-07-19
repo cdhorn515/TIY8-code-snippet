@@ -1,12 +1,15 @@
 
 var expect = require('chai').expect;
-var createUser = require('../controllers/users').createUser;
+var createUser = require('../controllers/helpers').createUser;
 var request = require('supertest');
 var app = require('../app');
 var Users = require('../models/users');
-var createPasswordHashObj = require('../controllers/users').createPasswordHashObj;
+var createPasswordHashObj = require('../controllers/helpers').createPasswordHashObj;
 // var hashString = require('../controllers/users').hashString;
-var login = require('../controllers/users').login;
+var login = require('../controllers/helpers').login;
+
+
+// ---------------------
 
 describe('user model tests', function() {
   afterEach(function(done){

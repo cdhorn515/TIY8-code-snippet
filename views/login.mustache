@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+<!--navigation links  -->
+<header>
+
+  <form class="float" action="/home" method="get">
+    <input type="submit" name="" value="Snippet">
+  </form>
+
+  <form class="float" action="/createSnippet" method="get">
+    <input type="submit" name="" value="Create a Snippet">
+  </form>
+
+  {{#name}}
+    <form class="float" action="/signup" method="get">
+      <input type="submit" name="" value="Logged in as {{name}}">
+    </form>
+  {{/name}}
+
+  {{#signedIn}}
+    <form class="float" action="/login" method="get">
+      <input type="submit" name="" value="Log out">
+    </form>
+  {{/signedIn}}
+
+  {{^signedIn}}
+  <form class="float" action="/login" method="get">
+    <input type="submit" name="" value="Log in">
+  </form>
+  {{/signedIn}}
+
+</header>
+<div class="clearFloat"></div>
+<!-- error msg -->
+{{req.session.error}}
+  <form class="login" action="/login" method="post">
+    <div>
+      <label for="name">Username</label>
+      <input type="text" name="name" value="">
+    </div>
+    <div>
+      <label for="">Password</label>
+      <input type="password" name="password" value="">
+    </div>
+    <input type="submit" name="" value="Enter">
+  </form>
+
+  <h4>Don't have a username? Click here to sign up!</h4>
+  <form class="" action="/signup" method="get">
+    <input type="submit" name="" value="Sign up">
+  </form>
+
+</body>
+
+</html>

@@ -6,5 +6,60 @@
   </head>
   <body>
     <h1>Create a snippet</h1>
+
+    <header>
+
+      <form class="float" action="/home" method="get">
+        <input type="submit" name="" value="Snippet">
+      </form>
+
+      <form class="float" action="/createSnippet" method="get">
+        <input type="submit" name="" value="Create a Snippet">
+      </form>
+
+      {{#name}}
+        <form class="float" action="/signup" method="get">
+          <input type="submit" name="" value="Logged in as {{name}}">
+        </form>
+      {{/name}}
+
+      {{#signedIn}}
+        <form class="float" action="/login" method="get">
+          <input type="submit" name="" value="Log out">
+        </form>
+      {{/signedIn}}
+
+      {{^signedIn}}
+      <form class="float" action="/login" method="get">
+        <input type="submit" name="" value="Log in">
+      </form>
+      {{/signedIn}}
+
+    </header>
+    <div class="clearFloat"></div>
+
+    <form class="" action="/createSnippet" method="post">
+      <label for="gab">Code Snippet</label>
+
+      <input type="text" name="title" value="" placeholder="Title of Snippet">
+      <label for="title">Title</label>
+
+      <input type="text" name="code" value="" placeholder="Snippet code">
+      <label for="code">Snippet Code</label>
+
+      <input type="text" name="language" value="" placeholder="Snippet language">
+      <label for="language">Language</label>
+
+      <input type="text" name="tags" value="" placeholder="Enter tags separated by a space">
+      <label for="tags">Tags</label>
+
+
+      <div>
+      <textarea name="notes" rows="4" cols="80"  placeholder="Notes on code"></textarea>
+        </div>
+      <div>
+        <input type="submit" name="" value="Submit">
+      </div>
+    </form>
   </body>
 </html>

@@ -1,0 +1,20 @@
+body{
+  background-image: url('./background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 100px 50px;
+}
+/*Navigation at top*/
+form{
+  margin-bottom: 10px;
+}
+input{
+  margin-bottom: 10px;
+}
+
+.float{
+  float: left;
+}
+.clearFloat{
+  clear:left;
+}

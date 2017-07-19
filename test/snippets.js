@@ -47,19 +47,28 @@ it('test should clean up after itself', function(done) {
   const snippet = new Snippets({username: "Sami", title: "api requests", code: "fetch api", language: "node", tags: [{name: "api"}]}).save().then(function(newSnippet) {
     Snippets.count().then(function(count) {
       expect(count).to.equal(4);
-    //  done();
   }).then(done());
   });
 });
 
 it('user can create a new snippet in the db and find with mongoose syntax', function(done) {
 
+  var tags = "database coding";
+  console.log("TAGS HERE",tags);
+  var tagsArray = tags.split(" ");
+  console.log("TAGS ARRAY",tagsArray);
 
-  var snippet = new Snippets({username: "Christina", title: "log your way to success", code: "console.log(all_the_things)", language: "java", tags: [{name: "database"}]}).save().then(function(newSnippet) {
+  var newSnippet = new Snippets({username: "Christina", title: "log your way to success", code: "console.log(all_the_things)", language: "java"});
+
+  tagsArray.forEach(function(tag) {
+    newSnippet.tags.push({name: tag});
+  });
+  newSnippet.save().then(function(newSnippet)
+
+  {
     expect(newSnippet.title).to.equal("log your way to success");
     expect(newSnippet.tags[0].name).to.equal("database");
   }).then(done());
-  // done();
  });
 });
 

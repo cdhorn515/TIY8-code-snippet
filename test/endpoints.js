@@ -3,6 +3,16 @@ var request = require('supertest');
 var app = require('../app');
 var Snippets = require('../models/snippets');
 
+describe('user endpoint tests', function(){
+
+  it('can access signup page', function(done) {
+    request(app)
+    .get('/signup')
+    .expect(200, done);
+  });
+
+});
+
 // basic access api test
 describe('basic snippet app endpoint tests', function() {
 

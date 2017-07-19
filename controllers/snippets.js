@@ -37,8 +37,6 @@ module.exports = {
   },
 
   createSnippet: (req, res) => {
-    // var newSnippet = new Snippets({title: req.body.title, code: req.body.code, language: req.body.language, $set: {tags: [{name: req.body.name}]}}).save().then((newSnippet)=> {
-      // console.log("!!!! ", newSnippet.tags);
 
       var tags = req.body.tags[0].name;
       console.log("TAGS HERE",tags);

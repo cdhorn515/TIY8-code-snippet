@@ -1,4 +1,5 @@
 var snippetController = require('./controllers/snippets');
+var userController = require('./controllers/users');
 
 module.exports = function(app) {
   app.get('/api/sanity', snippetController.sanityCheck);
@@ -25,5 +26,13 @@ module.exports = function(app) {
   app.get('/snippets/create', snippetController.createSnippetLandingPage);
 
   app.post('/snippets/create', snippetController.createSnippetEndpoint);
+
+  // app.get('/signup', userController.signupLanding);
+  //
+  // app.post('/signup', userController.createUser);
+  // //
+  // app.get('/login', userController.loginLanding);
+  // //
+  // app.post('/login', userController.login);
 
 };
