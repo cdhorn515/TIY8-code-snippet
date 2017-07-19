@@ -84,10 +84,10 @@ app.post('/api/snippets', function(req, res) {
     });
 });
 */
-if (require.main === "module") {
+// if (require.main === "module") {
 
 app.listen(3000, function(req, res) {
   console.log('I\'m listening');
 });
-}
+// }
 module.exports = app;

@@ -60,7 +60,7 @@ module.exports = {
   displayAllSnippets: (req, res) => {
       // console.log("ALL",snippets);
       var context = {
-        loggedIn: true,
+        signedIn: true,
         username: req.session.username,
       };
       Snippets.find({}).then((snippets) => {
@@ -72,7 +72,7 @@ module.exports = {
 
   displaySnippetsByLanguage: (req, res) => {
     var context = {
-      loggedIn: true,
+      signedIn: true,
       username: req.session.username,
     };
     Snippets.find({language: req.params.language}).then((result) => {
@@ -84,7 +84,7 @@ module.exports = {
   displaySnippetsByTag: (req, res) => {
     var search = req.params.tag;
     var context = {
-      loggedIn: true,
+      signedIn: true,
       username: req.session.username,
     };
     // console.log("SEARCH", req);
@@ -99,7 +99,7 @@ module.exports = {
   displaySnippetById: (req, res) => {
       var id = req.params.id;
       var context = {
-        loggedIn: true,
+        signedIn: true,
         username: req.session.username,
       };
       Snippets.find({title: id}).then((result) => {
@@ -110,14 +110,14 @@ module.exports = {
 
   createSnippetLandingPage: (req, res) => {
     var context = {
-      loggedIn: true,
-      username: req.session.username,
+      signedIn: true,
+      username: "Christina",
     };
     res.render('createSnippet', context);
   },
   createSnippetEndpoint: (req, res) => {
     var context = {
-      loggedIn: true,
+      signedIn: true,
       username: req.session.username,
     };
     var tags = req.body.tags[0].name;
@@ -132,7 +132,7 @@ module.exports = {
 
     newSnippet.save();
 
-    res.render('home');
+    res.render('home', context);
       // }
     // );
   }

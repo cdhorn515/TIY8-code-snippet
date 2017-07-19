@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Snippet home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
   </head>
   <body>
     <h1>Welcome to the snippet page</h1>
@@ -17,11 +19,11 @@
         <input type="submit" name="" value="Create a Snippet">
       </form>
 
-      {{#name}}
+      {{#username}}
         <form class="float" action="/signup" method="get">
-          <input type="submit" name="" value="Logged in as {{name}}">
+          <input type="submit" name="" value="Logged in as {{username}}">
         </form>
-      {{/name}}
+      {{/username}}
 
       {{#signedIn}}
         <form class="float" action="/login" method="get">

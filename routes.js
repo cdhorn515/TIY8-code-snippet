@@ -27,12 +27,15 @@ module.exports = function(app) {
 
   app.post('/snippets/create', snippetController.createSnippetEndpoint);
 
-  // app.get('/signup', userController.signupLanding);
-  //
+  app.get('/', userController.landing);
+
+  app.get('/signup', userController.signupLanding);
+
   // app.post('/signup', userController.createUser);
   // //
-  // app.get('/login', userController.loginLanding);
-  // //
+  app.get('/login', userController.loginLanding);
+  //
   // app.post('/login', userController.login);
+
 
 };
