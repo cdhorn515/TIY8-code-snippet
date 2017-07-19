@@ -25,7 +25,7 @@ module.exports = function(app) {
 
   app.get('/snippets/create', snippetController.createSnippetLandingPage);
 
-  app.post('/snippets/create', snippetController.createSnippetEndpoint);
+  // app.post('/snippets/create', snippetController.createSnippetEndpoint);
 
   app.get('/', userController.landing);
 

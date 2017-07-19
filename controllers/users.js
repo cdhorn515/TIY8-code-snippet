@@ -1,7 +1,31 @@
-//
-// var Users = require('../models/users');
-// var crypto = require('crypto');
 
+var Users = require('../models/users');
+var crypto = require('crypto');
+
+var createUser = function(username, password) {
+  // console.log(username, password);
+  return Users.create({username: username, password: createPasswordHashObj(password)});
+};
+
+var createPasswordHashObj = function(password, salt=""){
+  salt = salt || crypto.randomBytes(Math.ceil(32 * 3 / 4)).toString('base64').slice(0, 8);
+
+ var hash = crypto.pbkdf2Sync(password, salt, 100, 512, 'sha512');
+ var hashString = hash.toString('base64');
+ // console.log("hashString: ", hashString);
+ return {salt: salt, iterations: 100, hash: hashString};
+};
+
+var login = function(username, password) {
+  return Users.findOne({username: username}).then(function(user) {
+    if(!user) {
+      return false;
+    }
+    var pwObject = user.password;
+    var newPWObject = createPasswordHashObj(password, pwObject.salt);
+    return pwObject.hash === newPWObject.hash;
+  });
+};
 
 module.exports = {
   landing: function(req, res) {
@@ -24,35 +48,33 @@ module.exports = {
 
   loginLanding: function(req, res) {
     req.session.username = '';
-
-
-  res.render('login');
-}
-//   //FIX this to use encrypted pw
-//   createUser: function(req, res) {
-//       users.create({
-//         username: req.body.username,
-//         password: req.body.password
-//       }).then(function(newUser){
-//         // console.log('validating');
-//         req.session.name = req.body.name;
-//         res.redirect('/home');
-//         // FIX THIS LINE
-//       }).catch(){
-//         // console.log('UNIQUE----------- ', error.message);
-//         var context = {
-//           msg: "Someone's using that name already, please choose another"
-//         };
-//         res.render('signup', context);
-// // FIX THIS LINE
-//       }).catch() {
-//         // console.log('VALIDATE----------- ', error.message);
-//         var context = {
-//           msg: "Oops, something went wrong, please check your information and try again"
-//         };
-//         res.render('signup', context);
-//       });
-//     },
+    res.render('login');
+  },
+  //FIX this to use encrypted pw
+  createUser: function(req, res) {
+      users.create({
+        username: req.body.username,
+        password: req.body.password
+      }).then(function(newUser){
+        // console.log('validating');
+        req.session.name = req.body.name;
+        res.redirect('/home');
+        // FIX THIS LINE
+      }).catch(function(){
+        // console.log('UNIQUE----------- ', error.message);
+        var context = {
+          msg: "Someone's using that name already, please choose another"
+        };
+        res.render('signup', context);
+// FIX THIS LINE
+      }).catch(function () {
+        // console.log('VALIDATE----------- ', error.message);
+        var context = {
+          msg: "Oops, something went wrong, please check your information and try again"
+        };
+        res.render('signup', context);
+      });
+    },
 //
 //   loginLanding: function(req, res) {
 //     var context = {
