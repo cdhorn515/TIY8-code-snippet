@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h1>Welcome to the snippet page</h1>
+  <h1>Search Results:</h1>
 
   <header>
 
@@ -41,31 +41,40 @@
 </header>
     <div class="clearFloat"></div>
 
+    {{#searchBy}}<h1>Search by: {{tagSearch}}{{languageSearch}}</h1>{{/searchBy}}
+
+
     {{#model}}
-    {{#result}}
-      <ul>
-        <li>Title: {{title}}</li>
-        <li>Code: {{code}}</li>
-        <li>Language: {{language}}</li>
-        <li>Tags: </li>
+
+      <h3>Title: {{title}}</h3>
+        <h3>Code: {{code}}</h3>
+        {{#languageSearch}}
+      <h4>Language: {{language}}</h4>
+        {{/languageSearch}}
+      {{#tagSearch}}<h4>Tags: </h4>
         {{#tags}}
+        <ul>
           <li>{{name}}</li>
+            </ul>
         {{/tags}}
-        {{#notes}}
-          <li>Notes: {{notes}}</li>
-        {{/notes}}
-      </ul>
-      {{/result}}
+        {{/tagSearch}}
+      <h4>Notes: {{notes}}</h4>
+
+<div class="dividingLine">
+
+</div>
+
+
     {{/model}}
 
-    <form class="" action="/tags/:tag" method="get">
+    <form class="" action="/tags" method="get">
       <input class="search" type="text" name="tag" value="" placeholder="Enter a tag to search by">
-      <input type="submit" name="tags" value="Submit">
+      <button type="submit" name="" value="">Search</button>
     </form>
 
-    <form class="" action="/language/:language" method="get">
-      <input type="text" name="language" value="" placeholder="Enter a language to search by">
-      <input type="submit" name="" value="Submit">
+    <form class="" action="/language" method="get">
+      <input class="search" type="text" name="language" value="" placeholder="Enter a language to search by">
+      <button type="submit" name="" value="">Search</button>
 
     </form>
 

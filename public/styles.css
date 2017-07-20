@@ -22,3 +22,9 @@ input{
 .search{
   width: 200px;
 }
+
+.dividingLine{
+  border-top: 2px solid #000;
+  width: 60%;
+  padding: 15px 0;
+}

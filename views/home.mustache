@@ -50,29 +50,25 @@
         {{#tags}}
           <li>{{name}}</li>
         {{/tags}}
-        {{#notes}}
-          <li>Notes: {{notes}}</li>
-        {{/notes}}
+
       </ul>
 
       <form class="" action="/snippets/{{id}}" method="get" id="{{id}}">
-        <input type="submit" name="" value="">Click to see more info on this snippet
+        <input type="submit" name="" value="">Click to see additional info on this snippet
       </form>
     {{/model}}
 
-    <form class="" action="/snippets/:tag" method="get">
+    <form class="" action="/tags" method="get">
       <input class="search" type="text" name="tag" value="" placeholder="Enter a tag to search by">
-      <input type="submit" name="tag" value="Submit">
+      <button type="submit" name="" value="">Search</button>
     </form>
 
-    <form class="" action="/snippets/:language" method="get">
-      <input type="text" name="language" value="" placeholder="Enter a language to search by">
-      <input type="submit" name="" value="Submit">
-
+    <form class="" action="/language" method="get">
+      <input class="search" type="text" name="language" value="" placeholder="Enter a language to search by">
+      <button type="submit" name="" value="">Search</button>
     </form>
 
 
-  <div class="clearFloat"></div>
 </body>
 
 </html>

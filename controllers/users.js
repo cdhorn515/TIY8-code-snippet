@@ -86,8 +86,9 @@ module.exports = {
       loginPage: true
     };
     var username = req.body.username;
-    login(req.body.username, req.body.password).then(function() {
-      if (false) {
+    login(req.body.username, req.body.password).then(function(result) {
+      console.log("LOGGING IN ",result);
+      if (result === false) {
         context = {
           loggedIn: false,
           signedIn: false,
