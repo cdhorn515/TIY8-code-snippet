@@ -17,15 +17,16 @@ module.exports = {
 
   getSnippetsByLanguage: (req, res) => {
     Snippets.find({
-      language: req.body.language
+      language: req.params.language
     }).then((result) => {
+      console.log(result);
       // console.log("LANGUAGE ", req.query.language);
       res.json(result);
     });
   },
 
   getSnippetsByTag: (req, res) => {
-    var search = req.body.tag;
+    var search = req.params.tag;
     // console.log("SEARCH", req);
     Snippets.find({
       tags: {

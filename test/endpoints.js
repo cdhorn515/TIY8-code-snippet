@@ -81,29 +81,29 @@ it('user can go to create snippet page', function(done) {
 });
 
 
-it('user can go to page to se a specific snippet by id', function(done) {
+it('user can go to page to see a specific snippet by id', function(done) {
   request(app)
-  .get('/snippets/querying%20databases')
+  .get('/snippets/:id')
   .expect(200)
   .expect(function(res) {
     // console.log("RESULT ", res.body);
     expect(2).to.not.equal(1);
-  }).end(done);
+  }).then(done());
 });
 
   it('user can go to page to see list of snippets with a specific tag', function(done) {
     request(app)
-      .get('/snippets/tags/database')
+      .get('/tags/')
       .expect(200)
       .expect(function(res) {
         // console.log("RESULT", res);
         expect(2).to.not.equal(1);
-      }).end(done);
+      }).then(done());
     });
 
 it('can access snippet page to see snippets in a particular language', function (done) {
   request(app)
-    .get('/snippets/language/javascript')
+    .get('/language/')
     .expect(200)
     .expect(function(res) {
       expect(2).to.not.equal(3);
