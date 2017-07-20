@@ -13,7 +13,8 @@ var createPasswordHashObj = function(password, salt=""){
  var hash = crypto.pbkdf2Sync(password, salt, 100, 512, 'sha512');
  var hashString = hash.toString('base64');
  // console.log("hashString: ", hashString);
- return {salt: salt, iterations: 100, hash: hashString};
+ var pwObject = {salt: salt, iterations: 100, hash: hashString};
+ return pwObject;
 };
 
 var login = function(username, password) {

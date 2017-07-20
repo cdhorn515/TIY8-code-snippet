@@ -42,6 +42,7 @@
     <div class="clearFloat"></div>
 
     {{#model}}
+    {{#result}}
       <ul>
         <li>Title: {{title}}</li>
         <li>Code: {{code}}</li>
@@ -54,18 +55,15 @@
           <li>Notes: {{notes}}</li>
         {{/notes}}
       </ul>
-
-      <form class="" action="/snippets/{{id}}" method="get" id="{{id}}">
-        <input type="submit" name="" value="">Click to see more info on this snippet
-      </form>
+      {{/result}}
     {{/model}}
 
-    <form class="" action="/snippets/:tag" method="get">
+    <form class="" action="/tags/:tag" method="get">
       <input class="search" type="text" name="tag" value="" placeholder="Enter a tag to search by">
-      <input type="submit" name="tag" value="Submit">
+      <input type="submit" name="tags" value="Submit">
     </form>
 
-    <form class="" action="/snippets/:language" method="get">
+    <form class="" action="/language/:language" method="get">
       <input type="text" name="language" value="" placeholder="Enter a language to search by">
       <input type="submit" name="" value="Submit">
 

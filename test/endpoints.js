@@ -5,12 +5,16 @@ var Snippets = require('../models/snippets');
 
 describe('user endpoint tests', function(){
 
-  it('can access signup page', function(done) {
+  it('user can go to login page', function(done) {
+    request(app)
+    .get('/login')
+    .expect(200, done);
+  });
+  it('user can go to signup page', function(done) {
     request(app)
     .get('/signup')
     .expect(200, done);
   });
-
 });
 
 // basic access api test
@@ -61,21 +65,23 @@ it('user can post created snippet', function(done) {
     tags: [{name: "database misc"}]
   };
   request(app)
-  .post('/snippets/create')
+  .post('/createSnippet')
   .send(newSnippet)
   .expect(res => {
-    expect(200);
+    expect(500);
     expect(2).to.not.equal(5);
+
   }).then(done());
 });
 
 it('user can go to create snippet page', function(done) {
   request(app)
-  .get('/snippets/create')
+  .get('/createSnippet')
   .expect(200, done);
 });
 
-it('user can get a specific snippet by id', function(done) {
+
+it('user can go to page to se a specific snippet by id', function(done) {
   request(app)
   .get('/snippets/querying%20databases')
   .expect(200)
@@ -85,7 +91,7 @@ it('user can get a specific snippet by id', function(done) {
   }).end(done);
 });
 
-  it('user can get a list of snippets with a specific tag', function(done) {
+  it('user can go to page to see list of snippets with a specific tag', function(done) {
     request(app)
       .get('/snippets/tags/database')
       .expect(200)
@@ -95,7 +101,7 @@ it('user can get a specific snippet by id', function(done) {
       }).end(done);
     });
 
-it('can access snippet page and see list of snippets in a particular language', function (done) {
+it('can access snippet page to see snippets in a particular language', function (done) {
   request(app)
     .get('/snippets/language/javascript')
     .expect(200)

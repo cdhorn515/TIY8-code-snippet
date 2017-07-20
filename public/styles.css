@@ -18,3 +18,7 @@ input{
 .clearFloat{
   clear:left;
 }
+
+.search{
+  width: 200px;
+}

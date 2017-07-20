@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Create Snippet</title>
-    <link rel="stylesheet" href="/static/styles.css">
 
-  </head>
-  <body>
-    <h1>Create a snippet</h1>
+<head>
+  <meta charset="utf-8">
+  <title>Create Snippet</title>
+  <link rel="stylesheet" href="/static/styles.css">
 
-    <header>
+</head>
 
-      <form class="float" action="/home" method="get">
-        <input type="submit" name="" value="Snippet">
+<body>
+  <h1>Create a snippet</h1>
+
+  <header>
+
+    <form class="float" action="/snippets" method="get">
+      <input type="submit" name="" value="Snippet">
+    </form>
+
+    <form class="float" action="/createSnippet" method="get">
+      <input type="submit" name="" value="Create a Snippet">
+    </form>
+
+    {{#username}}
+      <form class="float" action="/signup" method="get">
+        <input type="submit" name="" value="Logged in as {{username}}">
       </form>
+    {{/username}}
 
-      <form class="float" action="/createSnippet" method="get">
-        <input type="submit" name="" value="Create a Snippet">
-      </form>
-
-      {{#username}}
-        <form class="float" action="/signup" method="get">
-          <input type="submit" name="" value="Logged in as {{username}}">
-        </form>
-      {{/username}}
-
-      {{#signedIn}}
-        <form class="float" action="/login" method="get">
-          <input type="submit" name="" value="Log out">
-        </form>
-      {{/signedIn}}
-
-      {{^signedIn}}
+    {{#signedIn}}
       <form class="float" action="/login" method="get">
-        <input type="submit" name="" value="Log in">
+        <input type="submit" name="" value="Log out">
       </form>
-      {{/signedIn}}
+    {{/signedIn}}
 
-    </header>
-    <div class="clearFloat"></div>
+    {{^signedIn}}
+    <form class="float" action="/login" method="get">
+      <input type="submit" name="" value="Log in">
+    </form>
+    {{/signedIn}}
 
-    <form class="" action="/createSnippet" method="post">
-      <!-- <label for="gab">Code Snippet</label>
+  </header>
+  <div class="clearFloat"></div>
+
+  <form class="" action="/createSnippet" method="post">
+    <!-- <label for="gab">Code Snippet</label>
       <input type="text" name="title" value="" placeholder="Type code here"> -->
-
+    <div>
       <label for="title">Title</label>
       <input type="text" name="title" value="" placeholder="Title of Snippet">
-
+    </div>
+    <div>
       <label for="code">Snippet Code</label>
       <input type="text" name="code" value="" placeholder="Snippet code">
-
+    </div>
+    <div>
       <label for="language">Language</label>
       <input type="text" name="language" value="" placeholder="Snippet language">
-
+    </div>
+    <div>
       <label for="tags">Tags</label>
       <input type="text" name="tags" value="" placeholder="Enter tags separated by a space">
+    </div>
+    <div>
+      <label for="notes">Notes</label>
+      <textarea name="notes" rows="5" cols="80" placeholder="Notes on code"></textarea>
+    </div>
+    <div>
+      <input type="submit" name="" value="Submit">
+    </div>
+  </form>
+</body>
 
-      <div>
-      <textarea name="notes" rows="5" cols="80"  placeholder="Notes on code"></textarea>
-        </div>
-      <div>
-        <input type="submit" name="" value="Submit">
-      </div>
-    </form>
-  </body>
 </html>
