@@ -3,8 +3,6 @@ var request = require('supertest');
 var app = require('../app');
 var Snippets = require('../models/snippets');
 
-
-
 //------------------------
 describe('basic snippet model tests', function() {
 
@@ -54,10 +52,7 @@ it('test should clean up after itself', function(done) {
 it('user can create a new snippet in the db and find with mongoose syntax', function(done) {
 
   var tags = "database coding";
-  console.log("TAGS HERE",tags);
   var tagsArray = tags.split(" ");
-  console.log("TAGS ARRAY",tagsArray);
-
   var newSnippet = new Snippets({username: "Christina", title: "log your way to success", code: "console.log(all_the_things)", language: "java"});
 
   tagsArray.forEach(function(tag) {

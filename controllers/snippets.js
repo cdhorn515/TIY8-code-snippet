@@ -10,7 +10,6 @@ module.exports = {
 
   getSnippets: (req, res) => {
     Snippets.find({}).then((snippets) => {
-      // console.log("ALL",snippets);
       res.json(snippets);
     });
   },
@@ -19,8 +18,6 @@ module.exports = {
     Snippets.find({
       language: req.params.language
     }).then((result) => {
-      console.log(result);
-      // console.log("LANGUAGE ", req.query.language);
       res.json(result);
     });
   },
@@ -52,9 +49,7 @@ module.exports = {
   createSnippet: (req, res) => {
 
     var tags = req.body.tags;
-    console.log("TAGS HERE", tags);
     var tagsArray = req.body.tags.split(" ");
-    console.log("TAGS ARRAY", tagsArray);
     var newSnippet = new Snippets({
       username: req.body.username,
       title: req.body.title,
@@ -101,15 +96,11 @@ module.exports = {
       languageSearch: req.query.language,
       searchBy: true,
     };
-    console.log(req.query.language);
     Snippets.find({
       language: req.query.language
     }).then(function(result) {
-      console.log("RESULT ",result.length);
 
-      // console.log("LANGUAGE ", req.params.language);
       for (var i = 0; i < result.length; i++) {
-        // console.log(result[i]);
         context.model.push(result[i]);
       }
       context.model = result;
@@ -134,8 +125,6 @@ module.exports = {
       }
     }).then((result) => {
       for (var i = 0; i < result.length; i++) {
-        console.log(result);
-        console.log(result[i]);
         context.model.push(result[i]);
       }
       res.render('search', context);
@@ -151,7 +140,6 @@ module.exports = {
     Snippets.find({
       _id: id
     }).then((result) => {
-      console.log("ID ", result);
       context.model = result;
       res.render('search', context);
     });
@@ -170,9 +158,7 @@ module.exports = {
       username: req.session.username,
     };
     var tags = req.body.tags;
-    console.log("TAGS HERE", tags);
     var tagsArray = req.body.tags.split(" ");
-    console.log("TAGS ARRAY", tagsArray);
     var newSnippet = new Snippets({
       username: req.body.username,
       title: req.body.title,

@@ -5,7 +5,6 @@ var request = require('supertest');
 var app = require('../app');
 var Users = require('../models/users');
 var createPasswordHashObj = require('../controllers/helpers').createPasswordHashObj;
-// var hashString = require('../controllers/users').hashString;
 var login = require('../controllers/helpers').login;
 
 
