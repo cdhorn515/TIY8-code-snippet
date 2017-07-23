@@ -24,7 +24,6 @@ module.exports = {
 
   getSnippetsByTag: (req, res) => {
     var search = req.params.tag;
-    // console.log("SEARCH", req);
     Snippets.find({
       tags: {
         $elemMatch: {
@@ -32,7 +31,6 @@ module.exports = {
         }
       }
     }).then((result) => {
-      // console.log("HERE", result[0].tags[0].name);
       res.json(result);
     });
   },
@@ -51,7 +49,7 @@ module.exports = {
     var tags = req.body.tags;
     var tagsArray = req.body.tags.split(" ");
     var newSnippet = new Snippets({
-      username: req.body.username,
+      username: req.session.username,
       title: req.body.title,
       code: req.body.code,
       language: req.body.language,
@@ -76,14 +74,12 @@ module.exports = {
   },
 
   displayAllSnippets: (req, res) => {
-    // console.log("ALL",snippets);
     var context = {
       signedIn: true,
       username: req.session.username,
     };
-    Snippets.find({}).then((snippets) => {
+    Snippets.find({username: req.session.username}).then((snippets) => {
       context.model = snippets;
-      // console.log("HERE", snippets);
       res.render('home', context);
     });
   },
@@ -96,7 +92,7 @@ module.exports = {
       languageSearch: req.query.language,
       searchBy: true,
     };
-    Snippets.find({
+    Snippets.find({username: req.session.username,
       language: req.query.language
     }).then(function(result) {
 
@@ -117,7 +113,7 @@ module.exports = {
       tagSearch: req.query.tag,
       searchBy: true,
     };
-    Snippets.find({
+    Snippets.find({username: req.session.username,
       tags: {
         $elemMatch: {
           name: search
@@ -160,7 +156,7 @@ module.exports = {
     var tags = req.body.tags;
     var tagsArray = req.body.tags.split(" ");
     var newSnippet = new Snippets({
-      username: req.body.username,
+      username: req.session.username,
       title: req.body.title,
       code: req.body.code,
       language: req.body.language,
@@ -176,8 +172,6 @@ module.exports = {
     newSnippet.save();
 
     res.redirect('/snippets');
-    // }
-    // );
   }
 
 };
