@@ -18,11 +18,19 @@ var passport = require("passport");
 var BasicStrategy = require("passport-http").BasicStrategy;
 
 var nodeEnv = process.env.NODE_ENV || "development";
-var config = require('./config.json')[nodeEnv];
+// var config = require('./config.json')[nodeEnv];
 
 mongoose.Promise = require('bluebird');
-mongoose.connect(config.mongoURL);
-// mongoose.connect('mongodb://localhost:27017/cdc_code_snippet_dev');
+let mongoURL;
+
+if (nodeEnv === "production") {
+  mongoURL = process.env.MONGODB_URI;
+} else {
+  mongoURL = require("./config.json")[environment].mongoURL;
+}
+
+// mongoose.connect(config.mongoURL);
+mongoose.connect(mongoURL);
 
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
@@ -43,10 +51,9 @@ app.use(session({
 routes(app);
 
 
-// if (require.main === "module") {
 
 app.listen(process.env.PORT || 3000, function(req, res) {
   console.log('I\'m listening');
 });
-// }
+
 module.exports = app;
