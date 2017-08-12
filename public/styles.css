@@ -1,8 +1,7 @@
 body{
   background-image: url('./grey-patterned-bg.jpg');
-  /*background-repeat: no-repeat;*/
   background-size: cover;
-  margin: 100px 50px;
+  margin: 100px 150px;
 }
 /*Navigation at top*/
 form{
