@@ -1,5 +1,5 @@
 body{
-  background-image: url('./background.jpg');
+  background-image: url('./background-sky.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   margin: 100px 50px;
@@ -17,6 +17,10 @@ input{
 }
 .clearFloat{
   clear:left;
+}
+
+.addCodeForm{
+    width: 250px;
 }
 
 .search{

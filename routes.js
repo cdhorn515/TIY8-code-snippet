@@ -17,7 +17,7 @@ module.exports = function(app) {
   app.get('/sanity', snippetController.endpointSanityCheck);
 
   app.get('/snippets', snippetController.displayAllSnippets);
-  
+
   app.get('/language', snippetController.displaySnippetsByLanguage);
 
   app.get('/tags', snippetController.displaySnippetsByTag);

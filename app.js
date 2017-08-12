@@ -26,10 +26,8 @@ let mongoURL;
 if (nodeEnv === "production") {
   mongoURL = process.env.MONGODB_URI;
 } else {
-  mongoURL = require("./config.json")[environment].mongoURL;
+  mongoURL = require("./config.json")[nodeEnv].mongoURL;
 }
-
-// mongoose.connect(config.mongoURL);
 mongoose.connect(mongoURL);
 
 app.engine('mustache', mustacheExpress());
@@ -45,12 +43,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-// middleware.passportInitiate();
-// app.use(middleware.validateUser());
 
 routes(app);
-
-
 
 app.listen(process.env.PORT || 3000, function(req, res) {
   console.log('I\'m listening');

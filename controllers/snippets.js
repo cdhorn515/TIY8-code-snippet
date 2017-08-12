@@ -24,6 +24,8 @@ module.exports = {
 
   getSnippetsByTag: (req, res) => {
     var search = req.params.tag;
+    middleware.passportInitiate();
+    app.use(middleware.validateUser());
     Snippets.find({
       tags: {
         $elemMatch: {
@@ -45,7 +47,6 @@ module.exports = {
   },
 
   createSnippet: (req, res) => {
-
     var tags = req.body.tags;
     var tagsArray = req.body.tags.split(" ");
     var newSnippet = new Snippets({
