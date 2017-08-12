@@ -1,6 +1,6 @@
 body{
-  background-image: url('./background-sky.jpg');
-  background-repeat: no-repeat;
+  background-image: url('./grey-patterned-bg.jpg');
+  /*background-repeat: no-repeat;*/
   background-size: cover;
   margin: 100px 50px;
 }
