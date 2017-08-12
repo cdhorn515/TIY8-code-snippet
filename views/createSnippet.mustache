@@ -44,23 +44,33 @@
 
   <form class="" action="/createSnippet" method="post">
     <div>
-      <label for="title">Title</label>
-      <input class="addCodeForm" type="text" name="title" value="" placeholder="Title of Snippet">
+      <label class="addCodeLabel" for="title">Title:</label>
     </div>
     <div>
-      <label for="code">Snippet Code</label>
+      <input class="addCodeInput" type="text" name="title" value="" placeholder="Title of Snippet">
+    </div>
+    <div>
+      <label class="addCodeLabel" for="code">Snippet Code:</label>
+    </div>
+    <div>
       <textarea type="text" rows="4" cols="40" name="code" value="" placeholder="Snippet code"></textarea>
     </div>
     <div>
-      <label for="language">Language</label>
-      <input class="addCodeForm" type="text" name="language" value="" placeholder="Snippet language">
+      <label class="addCodeLabel" for="language">Language:</label>
     </div>
     <div>
-      <label for="tags">Tags</label>
-      <input class="addCodeForm" type="text" name="tags" value="" placeholder="Enter tags separated by a space">
+      <input class="addCodeInput" type="text" name="language" value="" placeholder="Language code is written in">
     </div>
     <div>
-      <label for="notes">Notes</label>
+      <label class="addCodeLabel" for="tags">Tags:</label>
+    </div>
+    <div>
+      <input class="addCodeInput" type="text" name="tags" value="" placeholder="Enter tags separated by a space">
+    </div>
+    <div>
+      <label class="addCodeLabel" for="notes">Notes:</label>
+    </div>
+    <div>
       <textarea name="notes" rows="5" cols="80" placeholder="Notes on code"></textarea>
     </div>
     <div>

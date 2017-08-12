@@ -18,7 +18,11 @@ input{
   clear:left;
 }
 
-.addCodeForm{
+.addCodeLagel{
+  display: inline-block;
+}
+
+.addCodeInput{
     width: 250px;
 }
 
