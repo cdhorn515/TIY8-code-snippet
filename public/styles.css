@@ -35,3 +35,12 @@ input{
   width: 60%;
   padding: 15px 0;
 }
+
+.sqlpic{
+  width: 50%;
+  height: 250px;
+  background-image: url("./sql_code_pic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: right;
+}

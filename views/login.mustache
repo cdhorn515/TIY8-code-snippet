@@ -9,6 +9,7 @@
 </head>
 <body>
 <!--navigation links  -->
+
 <header>
 
   <form class="float" action="/snippets" method="get">
@@ -36,9 +37,13 @@
     <input type="submit" name="" value="Log in">
   </form>
   {{/signedIn}}
-
 </header>
+
 <div class="clearFloat"></div>
+
+{{{yield}}}
+<div class="sqlpic"></div>
+
 <!-- error msg -->
 {{req.session.error}}
   <form class="login" action="/login" method="post">
@@ -57,6 +62,9 @@
   <form class="" action="/signup" method="get">
     <input type="submit" name="" value="Sign up">
   </form>
+
+<!-- <div class="matrixpic"> -->
+</div>
 
 </body>
 
