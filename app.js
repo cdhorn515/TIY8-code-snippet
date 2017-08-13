@@ -4,7 +4,6 @@ var expressValidator = require('express-validator');
 var parseurl = require('parseurl');
 var express = require('express');
 var session = require('express-session');
-var middleware = require('./middleware');
 var path = require('path');
 var mongoose = require('mongoose');
 var routes = require('./routes');
