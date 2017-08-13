@@ -18,7 +18,6 @@ var passport = require("passport");
 var BasicStrategy = require("passport-http").BasicStrategy;
 
 var nodeEnv = process.env.NODE_ENV || "development";
-// var config = require('./config.json')[nodeEnv];
 
 mongoose.Promise = require('bluebird');
 let mongoURL;
