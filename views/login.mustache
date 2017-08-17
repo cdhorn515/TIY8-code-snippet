@@ -8,40 +8,9 @@
 
 </head>
 <body>
-<!--navigation links  -->
-
-<header>
-
-  <form class="float" action="/snippets" method="get">
-    <input type="submit" name="" value="Snippet">
-  </form>
-
-  <form class="float" action="/createSnippet" method="get">
-    <input type="submit" name="" value="Create a Snippet">
-  </form>
-
-  {{#name}}
-    <form class="float" action="/signup" method="get">
-      <input type="submit" name="" value="Logged in as {{name}}">
-    </form>
-  {{/name}}
-
-  {{#signedIn}}
-    <form class="float" action="/login" method="get">
-      <input type="submit" name="" value="Log out">
-    </form>
-  {{/signedIn}}
-
-  {{^signedIn}}
-  <form class="float" action="/login" method="get">
-    <input type="submit" name="" value="Log in">
-  </form>
-  {{/signedIn}}
-</header>
 
 <div class="clearFloat"></div>
 
-{{{yield}}}
 <div class="sqlpic"></div>
 
 <!-- error msg -->

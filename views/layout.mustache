@@ -1,6 +1,5 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Login</title>
@@ -10,7 +9,7 @@
   <body>
 
     <header>
-      {{#header}}
+
       <form class="float" action="/snippets" method="get">
         <input type="submit" name="" value="Snippet">
       </form>
@@ -19,11 +18,11 @@
         <input type="submit" name="" value="Create a Snippet">
       </form>
 
-      {{#name}}
+      {{#username}}
         <form class="float" action="/signup" method="get">
-          <input type="submit" name="" value="Logged in as {{name}}">
+          <input type="submit" name="" value="Logged in as {{username}}">
         </form>
-      {{/name}}
+      {{/username}}
 
       {{#signedIn}}
         <form class="float" action="/login" method="get">
@@ -36,8 +35,12 @@
         <input type="submit" name="" value="Log in">
       </form>
       {{/signedIn}}
-      {{/header}}
+
     </header>
+    {{{yield}}}
+
+
+
 
   </body>
-</html> -->
+</html>

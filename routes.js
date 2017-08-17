@@ -1,18 +1,20 @@
 var snippetController = require('./controllers/snippets');
 var userController = require('./controllers/users');
+var passport = require("passport");
+
 
 module.exports = function(app) {
   app.get('/api/sanity', snippetController.sanityCheck);
 
-  app.get('/api/snippets', snippetController.getSnippets);
+  app.get('/api/snippets', passport.authenticate('basic', {session: false}), snippetController.getSnippets);
 
-  app.get('/api/language/:language', snippetController.getSnippetsByLanguage);
+  app.get('/api/language/:language', passport.authenticate('basic', {session: false}), snippetController.getSnippetsByLanguage);
 
-  app.get('/api/tags/:tag', snippetController.getSnippetsByTag);
+  app.get('/api/tags/:tag', passport.authenticate('basic', {session: false}), snippetController.getSnippetsByTag);
 
-  app.get('/api/snippets/:id', snippetController.getSnippetById);
+  app.get('/api/snippets/:id', passport.authenticate('basic', {session: false}), snippetController.getSnippetById);
 
-  app.post('/api/createSnippet', snippetController.createSnippet);
+  app.post('/api/createSnippet', passport.authenticate('basic', {session: false}), snippetController.createSnippet);
 
   app.get('/sanity', snippetController.endpointSanityCheck);
 

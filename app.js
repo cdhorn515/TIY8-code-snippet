@@ -5,6 +5,7 @@ var parseurl = require('parseurl');
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
+var middleware = require('./middleware');
 var mongoose = require('mongoose');
 var routes = require('./routes');
 var Snippets = require('./models/snippets');
@@ -33,7 +34,7 @@ app.set('view engine', 'mustache');
 app.set('views', path.join(__dirname, 'views'));
 
 //templatefor pages
-// app.set('layout', 'layout');
+app.set('layout', 'layout');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -44,6 +45,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+middleware.passportInitiate();
+
+// app.use(middleware.validateUser());
+
+//use authentication on all routes
+// app.use(passport.authenticate('basic', {session: false}));
 
 routes(app);
 
