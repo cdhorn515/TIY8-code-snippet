@@ -75,17 +75,23 @@ module.exports = {
   },
 
   displayAllSnippets: (req, res) => {
-    var context = {
-      signedIn: true,
-      username: req.session.username,
-    };
-    Snippets.find({username: req.session.username}).then((snippets) => {
-      context.model = snippets;
-      res.render('home', context);
-    });
+    console.log(req.session.username);
+    if (!req.session.username) {
+      res.redirect('/login');
+      return;
+    } else {
+      var context = {};
+      context.signedIn = true;
+      context.username = req.session.username;
+      Snippets.find({username: req.session.username}).then((snippets) => {
+        context.model = snippets;
+        res.render('home', context);
+      });
+    }
   },
 
   displaySnippetsByLanguage: (req, res) => {
+
     var context = {
       signedIn: true,
       username: req.session.username,
@@ -96,7 +102,6 @@ module.exports = {
     Snippets.find({username: req.session.username,
       language: req.query.language
     }).then(function(result) {
-
       for (var i = 0; i < result.length; i++) {
         context.model.push(result[i]);
       }
@@ -143,11 +148,16 @@ module.exports = {
   },
 
   createSnippetLandingPage: (req, res) => {
+    if (!req.session.username) {
+      res.redirect('/login');
+      return;
+} else {
     var context = {
       signedIn: true,
       username: req.session.username,
     };
     res.render('createSnippet', context);
+  }
   },
   createSnippetEndpoint: (req, res) => {
     var context = {
