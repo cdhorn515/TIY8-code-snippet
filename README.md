@@ -4,7 +4,9 @@ I build a Node.js Express application that uses a Mongo NoSQL database to store 
 
 Password hashing is used to encrypt user passwords.
 
-This project also demonstrates the principles of Test Driven Development (TDD). All controllers and models were developed using TDD with Mocha and Chai.
+This project also demonstrates my understanding of the principles of Test Driven Development (TDD). All controllers and models were developed using test scripts written using Mocha and Chai.
+
+This project is deployed on Heroku [here](https://gentle-sea-40488.herokuapp.com/).
 
 ### Built with
 * Node.js (version 8)
