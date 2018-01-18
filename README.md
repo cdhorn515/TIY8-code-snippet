@@ -47,23 +47,23 @@ mongo
 ```
 use [whatever-you-want-to-call-your-database];
 ```
-* Back in the tab where you've cloned the repo type `npm install` which will download all of the dependencies required for this application.
-* Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
+* Back in the tab where you've cloned the repo type `npm install` which will download and install the dependencies required for this application
+* Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, replace **cdc_code_snippet_dev** with the name you gave your database, and save this file
 ```
 mongodb://localhost:27017/[your_database_name_goes_here]
 ```
-* Now type `node app.js`, then point a browser window to `localhost:3000`, create a user, and start saving some snippets! Snippets are searchable by language or tags so save a few and then search for them using these methods.
+* Now type `node app.js`, point a browser window to `localhost:3000`, create a user, and start saving some snippets! Snippets are searchable by language or tags so create a few and then search for them using these methods.
 
-When you are ready to stop running the application in your terminal press `ctrl-c`
-It's fine to leave this running in the background, but if you want to stop it when you're finished running the app type
-```
-brew services stop mongodb
-```
+When you are ready to stop running the application in your terminal press `ctrl-c`.
 
 If you don't want to keep your database, then in the Mongo shell you opened above to create your database, type the following:
 ```
 use [your_database_name_goes_here];
 db.dropDatabase();
+```
+It's fine to leave your MongoDB instance running in the background, but if you want to stop it when you're finished running the app type
+```
+brew services stop mongodb
 ```
 
 :bowtie:
