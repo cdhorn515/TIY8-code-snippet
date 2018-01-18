@@ -30,24 +30,33 @@ This project also demonstrates the principles of Test Driven Development (TDD). 
   ```
 * Once you have Node.js installed type `npm install` which will download all of the dependencies required for this application
 * You will also need to have MongoDB running. If you aren't sure if you have MongoDB on your computer check by typing `which mongo` in your terminal.
-* To install Mongo type
+* To install Mongo using [Homebrew](https://brew.sh/) type
 ```
 brew install mongodb
 ```
-to install using [Homebrew](https://brew.sh/).
 * Start your Mongo database by typing
 ```
 brew services start mongodb
 ```
-It's fine to leave this running in the background, but if you want to stop it you should type
+It's fine to leave this running in the background, but if you want to stop it when you're finished running the app you type
 ```
 brew services stop mongodb
 ```
-
-* Now type `node app.js`, then point a browser window to `localhost:3000`, and start saving some snippets! :grinning: :laughing: :grinning:
-
+* You will want to create your own database. To do this open a mongo shell by typing
+```
+mongo
+```
+* In the new terminal tab that opens up type the following to create your database
+```
+use [whatever-you-want-to-call-your-database]
+```
+* Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, and replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
+```
+mongodb://localhost:27017/[your_database_name_goes_here]
+```
+* Now type `node app.js`, then point a browser window to `localhost:3000`, create a user, and start saving some snippets! Snippets are searchable by language or tags.
 
 When you are ready to stop running the application in your terminal press `ctrl-c`
 
-
-U using Node.js. Express and a Mongo database that organizes code snippets that users create and save for later use. Use TDD for all controllers and models. Authorization and authentication of endpoints, user passwords stored as a hash. API endponts for creating and viewing snippets. Users can search for snippet by language or by specific tag.
+:bowtie:
+("Bowties are :cool::grey_exclamation:", :mask::question::hash::one::two:)
