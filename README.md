@@ -46,7 +46,7 @@ mongo
 use [whatever-you-want-to-call-your-database]
 ```
 * Back in the tab where you've cloned the repo type `npm install` which will download all of the dependencies required for this application.
-* Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, and replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
+* Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
 ```
 mongodb://localhost:27017/[your_database_name_goes_here]
 ```
