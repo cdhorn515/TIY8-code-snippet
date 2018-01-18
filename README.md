@@ -28,8 +28,7 @@ This project also demonstrates the principles of Test Driven Development (TDD). 
   ```
   brew install node@8
   ```
-* Once you have Node.js installed type `npm install` which will download all of the dependencies required for this application
-* You will also need to have MongoDB running. If you aren't sure if you have MongoDB on your computer check by typing `which mongo` in your terminal.
+* You will also need to have a Mongo instance running. If you aren't sure if you have Mongo on your computer check by typing `which mongo` in your terminal.
 * To install Mongo using [Homebrew](https://brew.sh/) type
 ```
 brew install mongodb
@@ -38,11 +37,7 @@ brew install mongodb
 ```
 brew services start mongodb
 ```
-It's fine to leave this running in the background, but if you want to stop it when you're finished running the app you type
-```
-brew services stop mongodb
-```
-* You will want to create your own database. To do this open a mongo shell by typing
+* You will want to create your own database. To do this open a Mongo shell by typing
 ```
 mongo
 ```
@@ -50,13 +45,18 @@ mongo
 ```
 use [whatever-you-want-to-call-your-database]
 ```
+* Back in the tab where you've cloned the repo type `npm install` which will download all of the dependencies required for this application.
 * Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, and replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
 ```
 mongodb://localhost:27017/[your_database_name_goes_here]
 ```
-* Now type `node app.js`, then point a browser window to `localhost:3000`, create a user, and start saving some snippets! Snippets are searchable by language or tags.
+* Now type `node app.js`, then point a browser window to `localhost:3000`, create a user, and start saving some snippets! Snippets are searchable by language or tags so save a few and then search for them using these methods.
 
 When you are ready to stop running the application in your terminal press `ctrl-c`
+It's fine to leave this running in the background, but if you want to stop it when you're finished running the app type
+```
+brew services stop mongodb
+```
 
 :bowtie:
-("Bowties are :cool::grey_exclamation:", :mask::question::hash::one::two:)
+("Bowties are :cool:!", :mask::question::hash::one::two:)
