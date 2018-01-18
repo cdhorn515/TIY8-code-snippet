@@ -43,7 +43,7 @@ mongo
 ```
 * In the new terminal tab that opens up type the following to create your database
 ```
-use [whatever-you-want-to-call-your-database]
+use [whatever-you-want-to-call-your-database];
 ```
 * Back in the tab where you've cloned the repo type `npm install` which will download all of the dependencies required for this application.
 * Almost ready to run the app! Open the **config.json** file in whatever text editor you choose, replace **cdc_code_snippet_dev** with the name you gave your database, and save this file.
@@ -56,6 +56,12 @@ When you are ready to stop running the application in your terminal press `ctrl-
 It's fine to leave this running in the background, but if you want to stop it when you're finished running the app type
 ```
 brew services stop mongodb
+```
+
+If you don't want to keep your database, then in the Mongo shell you opened above to create your database, type the following:
+```
+use [your_database_name_goes_here];
+db.dropDatabase();
 ```
 
 :bowtie:
